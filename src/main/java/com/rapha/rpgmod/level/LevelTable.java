@@ -109,4 +109,18 @@ public final class LevelTable {
         }
         return OptionalInt.of(getXpRequired(level + 1) - xp);
     }
+
+    // Progresso dentro do level atual, de 0.0 a 1.0
+    public static float getProgress(int xp) {
+        int level = getLevel(xp);
+        if (level >= getMaxLevel()) {
+            return 1.0f;
+        }
+
+        int currentLevelXp = getXpRequired(level);
+        int nextLevelXp = getXpRequired(level + 1);
+
+        // O cast para float é essencial: int / int em Java descarta a parte decimal
+        return (float) (xp - currentLevelXp) / (nextLevelXp - currentLevelXp);
+    }
 }

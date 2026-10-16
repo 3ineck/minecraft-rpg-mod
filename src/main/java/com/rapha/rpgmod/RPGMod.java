@@ -3,6 +3,7 @@ package com.rapha.rpgmod;
 import com.rapha.rpgmod.item.ModItems;
 import com.rapha.rpgmod.level.LevelTable;
 import com.rapha.rpgmod.player.RPGPlayerData;
+import com.rapha.rpgmod.player.XPBarManager;
 
 import net.fabricmc.api.ModInitializer;
 
@@ -29,6 +30,7 @@ public class RPGMod implements ModInitializer {
 
 		LevelTable.load();
 		RPGPlayerData.initialize();
+		XPBarManager.initialize();
 		ModItems.initialize();
 	}
 

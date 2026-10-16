@@ -2,8 +2,10 @@ package com.rapha.rpgmod.item;
 
 import com.rapha.rpgmod.level.LevelTable;
 import com.rapha.rpgmod.player.RPGPlayerData;
+import com.rapha.rpgmod.player.XPBarManager;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -35,6 +37,10 @@ public class XPCrystalItem extends Item {
 
             RPGPlayerData newData = data.addExperience(XP_AMOUNT);
             player.setAttached(RPGPlayerData.ATTACHMENT, newData);
+
+            if (player instanceof ServerPlayer serverPlayer) {
+                XPBarManager.update(serverPlayer);
+            }
 
             // Remove 1 do stack (não remove no modo criativo)
             stack.consume(1, player);
