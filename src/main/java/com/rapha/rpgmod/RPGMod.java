@@ -1,6 +1,8 @@
 package com.rapha.rpgmod;
 
 import com.rapha.rpgmod.item.ModItems;
+import com.rapha.rpgmod.level.LevelTable;
+import com.rapha.rpgmod.player.RPGPlayerData;
 
 import net.fabricmc.api.ModInitializer;
 
@@ -25,7 +27,9 @@ public class RPGMod implements ModInitializer {
 
 		LOGGER.info("RPG Mod: código comum/servidor iniciado!");
 
-    ModItems.initialize();
+		LevelTable.load();
+		RPGPlayerData.initialize();
+		ModItems.initialize();
 	}
 
 	public static Identifier id(String path) {
